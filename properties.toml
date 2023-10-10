@@ -1,4 +1,4 @@
 #Name of your group
-group_name=""
-bulk_insert=true
-bulk_insert_heap=100
+json_name = "gruppo_chiuso"
+bulk_insert = true
+bulk_insert_heap = 100

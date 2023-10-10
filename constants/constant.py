@@ -1,9 +1,7 @@
 PROPERTIES_FILE = "properties.toml"
-PROPERTIES_FILE_GROUP_NAME = "group_name"
+PROPERTIES_FILE_JSON_NAME = "json_name"
 PROPERTIES_FILE_BULK_INSERT = "bulk_insert"
 PROPERTIES_FILE_BULK_INSERT_HEAP = "bulk_insert_heap"
-
-FILE_DB_NAME = "dizionario_telegram_"
 
 JSON_PROPERTY_FROM_ID = "from_id"
 JSON_PROPERTY_FROM = "from"

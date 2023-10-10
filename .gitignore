@@ -161,11 +161,10 @@ cython_debug/
 
 # exclude everything
 data/*.db
-# exception to the rule
-!data/.gitkeep
-# exclude everything
 input/*.json
-# exception to the rule
-!input/.gitkeep
 
 /.query/
+
+# IDE files
+.vscode
+.idea
