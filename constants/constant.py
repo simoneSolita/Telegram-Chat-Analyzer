@@ -1,5 +1,7 @@
 PROPERTIES_FILE = "properties.toml"
 PROPERTIES_FILE_GROUP_NAME = "group_name"
+PROPERTIES_FILE_BULK_INSERT = "bulk_insert"
+PROPERTIES_FILE_BULK_INSERT_HEAP = "bulk_insert_heap"
 
 FILE_DB_NAME = "dizionario_telegram_"
 

@@ -27,8 +27,22 @@ def insert_user(group_name, id_user, name):
         VALUES('{id_user}','{name}')")
 
 
+def bulk_insert_users(group_name, users):
+    con = open_db(group_name)
+    cur = con.cursor()
+    cur.executemany(f"INSERT OR IGNORE INTO user ({QUERY_TABLE_PARAMETER_USER}) \
+        VALUES(?,?)", users)
+
+
 def insert_sentence(group_name, value, date, id_user):
     con = open_db(group_name)
     cur = con.cursor()
     cur.execute(f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_WORD}) \
         VALUES('{value}',{date},'{id_user}')")
+
+
+def bulk_insert_sentences(group_name, sentences):
+    con = open_db(group_name)
+    cur = con.cursor()
+    cur.executemany(f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_WORD}) \
+        VALUES(?,?,?)", sentences)

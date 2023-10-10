@@ -1,4 +1,4 @@
-import json
+import orjson
 import tomllib
 import constants.constant
 from classes import classes
@@ -12,6 +12,6 @@ if __name__ == "__main__":
 
     # load JSON file
     with open(f"input/result_{properties.group_name}.json", "r", encoding="utf-8") as file:
-        json_content = json.load(file)
+        json_content = orjson.loads(file.read())
 
-    copy_json_to_db(properties.group_name, json_content)
+    copy_json_to_db(properties.group_name, properties.bulk_insert, properties.bulk_insert_heap, json_content)
