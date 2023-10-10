@@ -7,6 +7,8 @@ from constants.constant import (
     QUERY_TABLE_PARAMETER_USER,
     QUERY_TABLE_PARAMETER_WORD,
 )
+from constants.error_messages import ERROR_MESSAGE_DB_ALREADY_EXISTS
+from exceptions.DB_already_exists_error import DBAlreadyExistsError
 
 
 def open_db(json_name):
@@ -16,7 +18,14 @@ def open_db(json_name):
     return con
 
 
-def initialize_db(json_name):
+def initialize_db(json_name, on_db_conflict_delete):
+    if os.path.exists(os.path.join("data", f"{json_name}.db")):
+        if on_db_conflict_delete:
+            os.remove(os.path.join("data", f"{json_name}.db"))
+        else:
+            raise DBAlreadyExistsError(
+                ERROR_MESSAGE_DB_ALREADY_EXISTS.format(json_name)
+            )
     con = open_db(json_name)
     cur = con.cursor()
     cur.execute(QUERY_INSERT_TABLE_USER)

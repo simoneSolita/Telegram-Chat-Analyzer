@@ -2,6 +2,8 @@ PROPERTIES_FILE = "properties.toml"
 PROPERTIES_FILE_JSON_NAME = "json_name"
 PROPERTIES_FILE_BULK_INSERT = "bulk_insert"
 PROPERTIES_FILE_BULK_INSERT_HEAP = "bulk_insert_heap"
+PROPERTIES_FILE_ON_DB_CONFLICT_DELETE = "on_db_conflict_delete"
+
 
 JSON_PROPERTY_FROM_ID = "from_id"
 JSON_PROPERTY_FROM = "from"

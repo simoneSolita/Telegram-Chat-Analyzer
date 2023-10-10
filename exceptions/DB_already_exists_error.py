@@ -1,0 +1,2 @@
+class DBAlreadyExistsError(Exception):
+    pass
