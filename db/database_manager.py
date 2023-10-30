@@ -5,7 +5,7 @@ from constants.constant import (
     QUERY_INSERT_TABLE_USER,
     QUERY_INSERT_TABLE_WORD,
     QUERY_TABLE_PARAMETER_USER,
-    QUERY_TABLE_PARAMETER_WORD,
+    QUERY_TABLE_PARAMETER_WORD, QUERY_FIND_USER, QUERY_FIND_SENTENCE,
 )
 from constants.error_messages import ERROR_MESSAGE_DB_ALREADY_EXISTS
 from exceptions.DB_already_exists_error import DBAlreadyExistsError
@@ -68,4 +68,22 @@ def bulk_insert_sentences(json_name, sentences):
         f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_WORD}) \
         VALUES(?,?,?)",
         sentences,
+    )
+
+
+def search_user(json_name, user_input):
+    con = open_db(json_name)
+    cur = con.cursor()
+
+    return cur.execute(
+        QUERY_FIND_USER.format(user_input)
+    )
+
+
+def search_sentence(json_name, user_input):
+    con = open_db(json_name)
+    cur = con.cursor()
+
+    return cur.execute(
+        QUERY_FIND_SENTENCE.format(user_input)
     )
