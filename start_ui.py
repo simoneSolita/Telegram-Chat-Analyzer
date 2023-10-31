@@ -12,8 +12,12 @@ def ui_function_search_sentence(user_input):
     return search_sentence_db(user_input)
 
 
-def refresh_dbs():
-    return gr.Dropdown(choices=scan_db(), value=scan_db()[0])
+def refresh_db_list():
+    return scan_db()
+
+
+def create_new_db_dropdown():
+    return gr.Dropdown(choices=refresh_db_list())
 
 
 with gr.Blocks() as demo:
@@ -22,7 +26,7 @@ with gr.Blocks() as demo:
         with gr.Row() as dbs_row:
             dropdown = gr.Dropdown([], label="Chats", info="Select a chat to Query")
             dropdown.change(
-                fn=lambda s: gr.Dropdown.update(choices=scan_db()),
+                fn=lambda _: gr.Dropdown.update(choices=refresh_db_list()),
                 inputs=[dropdown],
                 outputs=[dropdown],
             )
@@ -34,7 +38,7 @@ with gr.Blocks() as demo:
             #     [],
             #     [],
             # )
-            scan_db_text_button.click(refresh_dbs, [], [dropdown])
+            scan_db_text_button.click(create_new_db_dropdown, [], [dropdown])
 
         with gr.Row() as btn_row:
             create_db_text_button = gr.Button("Create a DB")
