@@ -4,7 +4,6 @@ PROPERTIES_FILE_BULK_INSERT = "bulk_insert"
 PROPERTIES_FILE_BULK_INSERT_HEAP = "bulk_insert_heap"
 PROPERTIES_FILE_ON_DB_CONFLICT_DELETE = "on_db_conflict_delete"
 
-
 JSON_PROPERTY_FROM_ID = "from_id"
 JSON_PROPERTY_FROM = "from"
 JSON_PROPERTY_MESSAGES = "messages"
@@ -28,9 +27,9 @@ QUERY_INSERT_TABLE_WORD = "CREATE TABLE IF NOT EXISTS sentence(\
         date integer,\
         id_user text\
             )"
-QUERY_FIND_USER = "SELECT * FROM user WHERE name LIKE '%{}%'"
+QUERY_FIND_USER = "SELECT id,name FROM user WHERE name LIKE '%{}%'"
 
-QUERY_FIND_SENTENCE = "SELECT * FROM sentence WHERE value LIKE '%{}%'"
+QUERY_FIND_SENTENCE = "SELECT id,value,date,id_user FROM sentence WHERE value LIKE '%{}%'"
 
 QUERY_ORDER_USER_BY_ACTIVITY = ("select u.name as Nome , Count(*) as conteggio from user as u,sentence as s WHERE "
                                 "u.id=s.id_user Group by u.name ORDER BY COUNT(*) DESC")
@@ -41,5 +40,12 @@ QUERY_FIND_SENTENCES_BY_USER_NAME = ("select s.value as frase , u.name as utente
 QUERY_FIND_SENTENCE_DETAIL_BY_CHUNK = ("select s.value as frase , u.name as utente from user as u,sentence as s "
                                        "WHERE u.id=s.id_user AND s.value LIKE '%{}%'")
 
+QUERY_FIND_SENTENCE_DETAIL_BY_USER = ("select s.value as frase , u.name as utente from user as u,sentence as s "
+                                      "WHERE u.id=s.id_user AND u.name LIKE '%{}%'")
+
 QUERY_TABLE_PARAMETER_USER = "id, name"
-QUERY_TABLE_PARAMETER_WORD = "value, date, id_user"
+QUERY_TABLE_COLUMN_USER = ["id", "name"]
+QUERY_TABLE_PARAMETER_SENTENCE = "value, date, id_user"
+QUERY_TABLE_COLUMN_SENTENCE = ["id", "value", "date", "user"]
+QUERY_TABLE_COLUMN_SENTENCE_BY_CHUNK = ["frase", "utente"]
+QUERY_TABLE_COLUMN_SENTENCE_BY_USER = ["frase", "utente"]

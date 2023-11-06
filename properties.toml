@@ -1,9 +1,4 @@
-# Name of your group
 json_name = ""
-# Whether to delete the database if it already exists
 on_db_conflict_delete = true
-
-# Whether to perform bulk insert of json data
 bulk_insert = true
-# Maximum number of messages to insert in bulk (leave as it is if you are unsure of what you are doing)
 bulk_insert_heap = 250

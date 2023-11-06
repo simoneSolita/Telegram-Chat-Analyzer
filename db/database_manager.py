@@ -5,7 +5,8 @@ from constants.constant import (
     QUERY_INSERT_TABLE_USER,
     QUERY_INSERT_TABLE_WORD,
     QUERY_TABLE_PARAMETER_USER,
-    QUERY_TABLE_PARAMETER_WORD, QUERY_FIND_USER, QUERY_FIND_SENTENCE,
+    QUERY_TABLE_PARAMETER_SENTENCE, QUERY_FIND_USER, QUERY_FIND_SENTENCE, QUERY_FIND_SENTENCE_DETAIL_BY_CHUNK,
+    QUERY_FIND_SENTENCE_DETAIL_BY_USER,
 )
 from constants.error_messages import ERROR_MESSAGE_DB_ALREADY_EXISTS
 from exceptions.DB_already_exists_error import DBAlreadyExistsError
@@ -56,7 +57,7 @@ def insert_sentence(json_name, value, date, id_user):
     con = open_db(json_name)
     cur = con.cursor()
     cur.execute(
-        f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_WORD}) \
+        f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_SENTENCE}) \
         VALUES('{value}',{date},'{id_user}')"
     )
 
@@ -65,7 +66,7 @@ def bulk_insert_sentences(json_name, sentences):
     con = open_db(json_name)
     cur = con.cursor()
     cur.executemany(
-        f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_WORD}) \
+        f"INSERT INTO sentence ({QUERY_TABLE_PARAMETER_SENTENCE}) \
         VALUES(?,?,?)",
         sentences,
     )
@@ -85,5 +86,14 @@ def search_sentence(json_name, user_input):
     cur = con.cursor()
 
     return cur.execute(
-        QUERY_FIND_SENTENCE.format(user_input)
+        QUERY_FIND_SENTENCE_DETAIL_BY_CHUNK.format(user_input)
+    )
+
+
+def search_sentence_by_user(json_name, user_input):
+    con = open_db(json_name)
+    cur = con.cursor()
+
+    return cur.execute(
+        QUERY_FIND_SENTENCE_DETAIL_BY_USER.format(user_input)
     )
